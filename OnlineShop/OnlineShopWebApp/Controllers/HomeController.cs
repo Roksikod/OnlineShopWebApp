@@ -11,33 +11,34 @@ namespace OnlineShopWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private List<Product> products = new List<Product>()
+        private readonly ProductRepository productRepository;
+
+        public HomeController()
         {
-            new Product ("Product1", 111, "Description1"),
-            new Product ("Product2", 222, "Description2"),
-            new Product ("Product3", 333, "Description3"),
-            new Product ("Product4", 444, "Description4"),
-        };
-        
-    public string Index()
-    {
+            productRepository = new ProductRepository();
+        }  
+
+        public string Index()
+        {
+            var products = productRepository.GetAll();
             var result = "";
             foreach (var product in products)
             {
                 result += product + "\n\n";
             }
-        return result;
-    }
+            return result;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
-}
+
