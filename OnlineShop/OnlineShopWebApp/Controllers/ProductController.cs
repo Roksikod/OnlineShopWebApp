@@ -14,14 +14,11 @@ namespace OnlineShopWebApp.Controllers
         {
             productRepository = new ProductRepository();
         }
-        public string Index (int Id)
+        public IActionResult Index (int Id)
         {
             var product = productRepository.TryGetById(Id);
-            if (product==null)
-            {
-                return $"There is no product with Id = {Id}";
-            }
-            return $"{product}\n{product.Descpirtion}";
+            
+            return View(product);
         }
         public IActionResult Index()
         {
