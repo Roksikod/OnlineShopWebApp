@@ -1,0 +1,19 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Product";
+}
+
+
+<div class="row">
+    <div class="col-9">
+        <img class="card-img-top" src="~/images/product.jpg" />
+    </div>
+    <div class="col-3">
+        <h5>@Model.Name</h5>
+        <h5>@Model.Cost $</h5>
+        <h5>@Model.Descpirtion</h5>
+        <a class="btn-dark" href="#" role="button">Add to my cart</a>
+        <a class="btn-dark" href="/home/index" role="button">Return</a>
+    </div>
+</div>
