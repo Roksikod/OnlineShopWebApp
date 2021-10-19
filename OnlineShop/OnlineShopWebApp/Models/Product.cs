@@ -12,7 +12,8 @@ namespace OnlineShopWebApp.Models
         public string Name { get; }
         public decimal Cost { get; }
         public string Descpirtion { get; }
-        public Product(string name, decimal cost, string descpirtion)
+        public string ImagePath { get; }
+        public Product(string name, decimal cost, string descpirtion, string imagePath)
         {
             Id = instanceCounter;
             Name = name;
@@ -20,10 +21,11 @@ namespace OnlineShopWebApp.Models
             Descpirtion = descpirtion;
 
             instanceCounter += 1;
+            ImagePath = imagePath;
         }
         public override string ToString()
         {
-            return $"{Id}\n{Name}\n{Cost}\n{Descpirtion}";
+            return $"{Id}\n{Name}\n{Cost}\n{Descpirtion}\n{ImagePath}";
         }
 
     }
