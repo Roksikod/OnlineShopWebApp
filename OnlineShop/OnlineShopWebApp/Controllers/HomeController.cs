@@ -1,32 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using OnlineShopWebApp.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OnlineShopWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProductsRepository productRepository;
+        private readonly IProductsRepository productRepository;
 
-        public HomeController()
+        public HomeController(IProductsRepository productRepository)
         {
-            productRepository = new ProductsRepository();
-        }  
+            this.productRepository = productRepository;
+        }
 
-        public string Index()
+        public IActionResult Index()
         {
-            var products = productRepository.GetAll();
-            var result = "";
-            foreach (var product in products)
-            {
-                result += product + "\n\n";
-            }
-            return result;
+            var products = productRepository.GetAll();            
+            return View(products);
         }
 
         public IActionResult Privacy()
